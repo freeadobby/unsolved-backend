@@ -49,14 +49,6 @@ public class JwtProvider {
     }
 
     public String getEmail(String token) {
-        try {
-            Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token).getBody().getSubject();
-        } catch (ExpiredJwtException e) {
-            e.printStackTrace();
-            return e.getClaims().getSubject();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         return Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token).getBody().getSubject();
     }
 

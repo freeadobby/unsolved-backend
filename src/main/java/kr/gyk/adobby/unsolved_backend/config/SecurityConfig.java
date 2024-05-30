@@ -54,12 +54,11 @@ public class SecurityConfig {
                 .sessionManagement(configurer->configurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize ->
                         authorize
-                                .requestMatchers("/", "/**").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/v1").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/v1/user/register").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/v1/user").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/v1/user").hasRole("USER")
-                                .requestMatchers(HttpMethod.GET, "/v1/token").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/user/register").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/user").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/user").hasRole("USER")
+                                .requestMatchers(HttpMethod.GET, "/token").permitAll()
                                 .anyRequest().denyAll()
                 )
                 .addFilterBefore(new JwtAuthenticationFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class)

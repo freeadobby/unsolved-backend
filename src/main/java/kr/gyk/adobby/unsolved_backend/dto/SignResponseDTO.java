@@ -17,7 +17,7 @@ public class SignResponseDTO {
     private String username;
     private String baekjoon;
     private List<Authority> roles = new ArrayList<>();
-    private TokenDTO token;
+    private String token;
 
     public SignResponseDTO(User user) {
         this.id = user.getId();
