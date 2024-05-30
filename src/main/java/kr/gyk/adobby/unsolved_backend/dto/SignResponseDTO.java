@@ -1,5 +1,6 @@
 package kr.gyk.adobby.unsolved_backend.dto;
 
+import kr.gyk.adobby.unsolved_backend.entity.Token;
 import kr.gyk.adobby.unsolved_backend.entity.User;
 import kr.gyk.adobby.unsolved_backend.entity.Authority;
 import lombok.*;
@@ -17,7 +18,7 @@ public class SignResponseDTO {
     private String username;
     private String baekjoon;
     private List<Authority> roles = new ArrayList<>();
-    private String token;
+    private TokenDTO token;
 
     public SignResponseDTO(User user) {
         this.id = user.getId();

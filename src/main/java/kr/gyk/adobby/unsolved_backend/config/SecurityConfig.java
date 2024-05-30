@@ -58,7 +58,7 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.POST, "/user/register").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/user").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/user").hasRole("USER")
-                                .requestMatchers(HttpMethod.GET, "/token").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/user/token").permitAll()
                                 .anyRequest().denyAll()
                 )
                 .addFilterBefore(new JwtAuthenticationFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class)

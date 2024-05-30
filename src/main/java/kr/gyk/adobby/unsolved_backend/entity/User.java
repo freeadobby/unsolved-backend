@@ -34,6 +34,8 @@ public class User {
     @Builder.Default
     private List<Authority> roles = new ArrayList<>();
 
+    private String refreshToken;
+
     public void setBaekjoon(Baekjoon baekjoon) {
         this.baekjoon = baekjoon;
         baekjoon.setUser(this);

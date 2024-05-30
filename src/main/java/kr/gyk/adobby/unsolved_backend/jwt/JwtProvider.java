@@ -23,7 +23,7 @@ import java.util.List;
 public class JwtProvider {
     @Value("${jwt.token.secret-key}") private String salt;
     private Key secretKey;
-    private final long exp = 1000L * 60 * 60;
+    private final long exp = 1000L * 60 * 10;
     private final JpaUserDetailsService userDetailsService;
 
     @PostConstruct
@@ -49,6 +49,14 @@ public class JwtProvider {
     }
 
     public String getEmail(String token) {
+        try {
+            Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token).getBody().getSubject();
+        } catch (ExpiredJwtException e) {
+            e.printStackTrace();
+            return e.getClaims().getSubject();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token).getBody().getSubject();
     }
 
