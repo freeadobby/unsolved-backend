@@ -1,5 +1,6 @@
 package kr.gyk.adobby.unsolved_backend.controller;
 
+import kr.gyk.adobby.unsolved_backend.dto.LogoutRequestDTO;
 import kr.gyk.adobby.unsolved_backend.dto.SignRequestDTO;
 import kr.gyk.adobby.unsolved_backend.dto.SignResponseDTO;
 import kr.gyk.adobby.unsolved_backend.dto.TokenDTO;
@@ -28,8 +29,8 @@ public class SignController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<Boolean> logout(@RequestParam String email) throws Exception {
-        return new ResponseEntity<>(signService.logout(email), HttpStatus.OK);
+    public ResponseEntity<Boolean> logout(@RequestBody LogoutRequestDTO request) throws Exception {
+        return new ResponseEntity<>(signService.logout(request), HttpStatus.OK);
     }
 
     @PostMapping("/register")

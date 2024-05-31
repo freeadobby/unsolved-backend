@@ -1,13 +1,12 @@
 package kr.gyk.adobby.unsolved_backend.service;
 
+import kr.gyk.adobby.unsolved_backend.dto.LogoutRequestDTO;
 import kr.gyk.adobby.unsolved_backend.dto.SignRequestDTO;
 import kr.gyk.adobby.unsolved_backend.dto.SignResponseDTO;
 import kr.gyk.adobby.unsolved_backend.dto.TokenDTO;
-import kr.gyk.adobby.unsolved_backend.entity.Authority;
-import kr.gyk.adobby.unsolved_backend.entity.Baekjoon;
-import kr.gyk.adobby.unsolved_backend.entity.RefreshToken;
-import kr.gyk.adobby.unsolved_backend.entity.User;
+import kr.gyk.adobby.unsolved_backend.entity.*;
 import kr.gyk.adobby.unsolved_backend.jwt.JwtProvider;
+import kr.gyk.adobby.unsolved_backend.repository.AccessTokenBlackListRepository;
 import kr.gyk.adobby.unsolved_backend.repository.RefreshTokenRepository;
 import kr.gyk.adobby.unsolved_backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +26,7 @@ public class SignService {
     private final PasswordEncoder passwordEncoder;
     private final JwtProvider jwtProvider;
     private final RefreshTokenRepository refreshTokenRepository;
+    private final AccessTokenBlackListRepository accessTokenBlackListRepository;
 
     public SignResponseDTO login(SignRequestDTO request) throws Exception {
         User user = userRepository.findByEmail(request.getEmail()).orElseThrow(() -> new BadCredentialsException("Invalid Email"));
@@ -45,11 +45,12 @@ public class SignService {
                 .build();
     }
 
-    public boolean logout(String email) throws Exception {
+    public boolean logout(LogoutRequestDTO request) throws Exception {
         try {
-            User user = userRepository.findByEmail(email).orElseThrow(() -> new BadCredentialsException("Invalid Email"));
+            User user = userRepository.findByEmail(request.getEmail()).orElseThrow(() -> new BadCredentialsException("Invalid Email"));
             if (refreshTokenRepository.findById(user.getId()).isEmpty()) throw new Exception("Session expired");
             refreshTokenRepository.deleteById(user.getId());
+            accessTokenBlackListRepository.save(AccessTokenBlackList.builder().id(user.getId()).accessToken(request.getAccessToken()).expiration(1000L * 60 * 10).build());
         } catch (Exception e) {
             throw new Exception("Bad Reqeust");
         }

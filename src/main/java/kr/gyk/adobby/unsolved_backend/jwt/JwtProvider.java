@@ -5,15 +5,20 @@ import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
 import kr.gyk.adobby.unsolved_backend.entity.Authority;
+import kr.gyk.adobby.unsolved_backend.entity.User;
+import kr.gyk.adobby.unsolved_backend.repository.AccessTokenBlackListRepository;
+import kr.gyk.adobby.unsolved_backend.repository.UserRepository;
 import kr.gyk.adobby.unsolved_backend.service.JpaUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;
+import java.nio.file.FileAlreadyExistsException;
 import java.security.Key;
 import java.util.Date;
 import java.util.List;
@@ -25,6 +30,8 @@ public class JwtProvider {
     private Key secretKey;
     private final long exp = 1000L * 60 * 10;
     private final JpaUserDetailsService userDetailsService;
+    private final AccessTokenBlackListRepository accessTokenBlackListRepository;
+    private final UserRepository userRepository;
 
     @PostConstruct
     protected void init() {
@@ -69,6 +76,7 @@ public class JwtProvider {
             if (!token.substring(0, "BEARER ".length()).equalsIgnoreCase("BEARER ")) return false;
             token = token.split(" ")[1].trim();
             Jws<Claims> claims = Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token);
+            if (accessTokenBlackListRepository.findById(userRepository.findByEmail(this.getEmail(token)).get().getId()).isPresent()) return false;
             return !claims.getBody().getExpiration().before(new Date());
         } catch (Exception e) {
             return false;
