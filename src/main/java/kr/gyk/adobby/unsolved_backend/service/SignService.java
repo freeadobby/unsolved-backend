@@ -5,10 +5,10 @@ import kr.gyk.adobby.unsolved_backend.dto.SignResponseDTO;
 import kr.gyk.adobby.unsolved_backend.dto.TokenDTO;
 import kr.gyk.adobby.unsolved_backend.entity.Authority;
 import kr.gyk.adobby.unsolved_backend.entity.Baekjoon;
-import kr.gyk.adobby.unsolved_backend.entity.Token;
+import kr.gyk.adobby.unsolved_backend.entity.RefreshToken;
 import kr.gyk.adobby.unsolved_backend.entity.User;
 import kr.gyk.adobby.unsolved_backend.jwt.JwtProvider;
-import kr.gyk.adobby.unsolved_backend.repository.TokenRepository;
+import kr.gyk.adobby.unsolved_backend.repository.RefreshTokenRepository;
 import kr.gyk.adobby.unsolved_backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -26,7 +26,7 @@ public class SignService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtProvider jwtProvider;
-    private final TokenRepository tokenRepository;
+    private final RefreshTokenRepository refreshTokenRepository;
 
     public SignResponseDTO login(SignRequestDTO request) throws Exception {
         User user = userRepository.findByEmail(request.getEmail()).orElseThrow(() -> new BadCredentialsException("Invalid Email"));
@@ -48,8 +48,8 @@ public class SignService {
     public boolean logout(String email) throws Exception {
         try {
             User user = userRepository.findByEmail(email).orElseThrow(() -> new BadCredentialsException("Invalid Email"));
-            if (tokenRepository.findById(user.getId()).isEmpty()) throw new Exception("Session expired");
-            tokenRepository.deleteById(user.getId());
+            if (refreshTokenRepository.findById(user.getId()).isEmpty()) throw new Exception("Session expired");
+            refreshTokenRepository.deleteById(user.getId());
         } catch (Exception e) {
             throw new Exception("Bad Reqeust");
         }
@@ -80,21 +80,21 @@ public class SignService {
     }
 
     public String createRefreshToken(User user) {
-        Token token = tokenRepository.save(Token.builder()
+        RefreshToken refreshToken = refreshTokenRepository.save(RefreshToken.builder()
                 .id(user.getId())
                 .refreshToken(UUID.randomUUID().toString())
                 .expiration(60 * 60)
                 .build()
         );
-        return token.getRefreshToken();
+        return refreshToken.getRefreshToken();
     }
 
-    public Token valideRefreshToken(User user, String refreshToken) throws Exception {
-        Token token = tokenRepository.findById(user.getId()).orElseThrow(() -> new Exception("Session is expired"));
+    public RefreshToken valideRefreshToken(User user, String refreshToken) throws Exception {
+        RefreshToken token = refreshTokenRepository.findById(user.getId()).orElseThrow(() -> new Exception("Session is expired"));
         if (token.getRefreshToken() == null) return null;
         if (token.getExpiration() > 10) {
             token.setExpiration(60 * 60);
-            tokenRepository.save(token);
+            refreshTokenRepository.save(token);
         }
         if (!token.getRefreshToken().equals(refreshToken)) return null;
         return token;
@@ -103,7 +103,7 @@ public class SignService {
     public TokenDTO refreshAccessToken(TokenDTO token) throws Exception {
         String accountEmail = jwtProvider.getEmail(token.getAccessToken());
         User user = userRepository.findByEmail(accountEmail).orElseThrow(() -> new BadCredentialsException("Invalid Account Information"));
-        Token refreshToken = valideRefreshToken(user, token.getRefreshToken());
+        RefreshToken refreshToken = valideRefreshToken(user, token.getRefreshToken());
         if (refreshToken == null) throw new Exception("Login First");
         return TokenDTO.builder()
                 .accessToken(jwtProvider.createToken(accountEmail, user.getRoles()))

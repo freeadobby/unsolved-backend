@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 @AllArgsConstructor
 @NoArgsConstructor
 @RedisHash("refreshToken")
-public class Token {
+public class RefreshToken {
     @Id
     @JsonIgnore
     private Long id;

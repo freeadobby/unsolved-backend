@@ -1,6 +1,5 @@
 package kr.gyk.adobby.unsolved_backend.dto;
 
-import kr.gyk.adobby.unsolved_backend.entity.Token;
 import kr.gyk.adobby.unsolved_backend.entity.User;
 import kr.gyk.adobby.unsolved_backend.entity.Authority;
 import lombok.*;
