@@ -56,7 +56,8 @@ public class SecurityConfig {
                         authorize
                                 .requestMatchers(HttpMethod.GET, "/").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/user/register").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/user").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/user/login").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/user/logout").hasRole("USER")
                                 .requestMatchers(HttpMethod.GET, "/user").hasRole("USER")
                                 .requestMatchers(HttpMethod.GET, "/user/token").permitAll()
                                 .anyRequest().denyAll()

@@ -17,7 +17,7 @@ public class SignController {
     private final UserRepository userRepository;
     private final SignService signService;
 
-    @PostMapping("")
+    @PostMapping("/login")
     public ResponseEntity<SignResponseDTO> login(@RequestBody SignRequestDTO request) throws Exception {
         return new ResponseEntity<>(signService.login(request), HttpStatus.OK);
     }
@@ -25,6 +25,11 @@ public class SignController {
     @GetMapping("")
     public ResponseEntity<SignResponseDTO> getUser(@RequestParam String email) throws Exception {
         return new ResponseEntity<>(signService.getUser(email), HttpStatus.OK);
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<Boolean> logout(@RequestParam String email) throws Exception {
+        return new ResponseEntity<>(signService.logout(email), HttpStatus.OK);
     }
 
     @PostMapping("/register")

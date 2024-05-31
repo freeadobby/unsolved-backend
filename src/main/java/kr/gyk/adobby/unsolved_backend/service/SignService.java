@@ -11,7 +11,6 @@ import kr.gyk.adobby.unsolved_backend.jwt.JwtProvider;
 import kr.gyk.adobby.unsolved_backend.repository.TokenRepository;
 import kr.gyk.adobby.unsolved_backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -44,6 +43,17 @@ public class SignService {
                         .build()
                 )
                 .build();
+    }
+
+    public boolean logout(String email) throws Exception {
+        try {
+            User user = userRepository.findByEmail(email).orElseThrow(() -> new BadCredentialsException("Invalid Email"));
+            if (tokenRepository.findById(user.getId()).isEmpty()) throw new Exception("Session expired");
+            tokenRepository.deleteById(user.getId());
+        } catch (Exception e) {
+            throw new Exception("Bad Reqeust");
+        }
+        return true;
     }
 
     public boolean register(SignRequestDTO request) throws Exception {
