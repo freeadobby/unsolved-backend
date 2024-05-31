@@ -7,7 +7,6 @@ import kr.gyk.adobby.unsolved_backend.dto.TokenDTO;
 import kr.gyk.adobby.unsolved_backend.entity.*;
 import kr.gyk.adobby.unsolved_backend.jwt.JwtProvider;
 import kr.gyk.adobby.unsolved_backend.repository.AccessTokenBlackListRepository;
-import kr.gyk.adobby.unsolved_backend.repository.RefreshTokenRepository;
 import kr.gyk.adobby.unsolved_backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -34,7 +33,7 @@ public class UserService {
                 .id(user.getId())
                 .email(user.getEmail())
                 .username(user.getUsername())
-                .baekjoon(user.getBaekjoon().getUsername())
+                .baekjoonID(user.getBaekjoonID().getUsername())
                 .roles(user.getRoles())
                 .token(TokenDTO.builder()
                         .accessToken(jwtProvider.createToken(user.getEmail(), user.getRoles()))
@@ -63,7 +62,8 @@ public class UserService {
                     .username(request.getUsername())
                     .password(passwordEncoder.encode(request.getPassword()))
                     .build();
-            user.setBaekjoon(Baekjoon.builder().username(request.getBaekjoon()).build());
+            user.setUserExtend(UserExtend.builder().id(user.getId()).build());
+            user.setBaekjoonID(BaekjoonID.builder().username(request.getBaekjoon()).build());
             user.setRoles(Collections.singletonList(Authority.builder().name("ROLE_USER").build()));
             userRepository.save(user);
         } catch (Exception e) {
@@ -71,6 +71,11 @@ public class UserService {
             throw new Exception("Bad Request");
         }
         return true;
+    }
+
+    public boolean delete(LogoutRequestDTO request) throws Exception {
+        // TODO:: Account Delete Logic
+        return false;
     }
 
     public SignResponseDTO getUser(String email) throws Exception {

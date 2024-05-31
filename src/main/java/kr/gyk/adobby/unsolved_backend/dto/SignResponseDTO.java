@@ -15,7 +15,7 @@ public class SignResponseDTO {
     private Long id;
     private String email;
     private String username;
-    private String baekjoon;
+    private String baekjoonID;
     private List<Authority> roles = new ArrayList<>();
     private TokenDTO token;
 
@@ -23,7 +23,7 @@ public class SignResponseDTO {
         this.id = user.getId();
         this.email = user.getEmail();
         this.username = user.getUsername();
-        this.baekjoon = user.getBaekjoon().getUsername();
+        this.baekjoonID = user.getBaekjoonID().getUsername();
         this.roles = user.getRoles();
     }
 }

@@ -9,7 +9,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Baekjoon {
+public class BaekjoonID {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -20,14 +20,14 @@ public class UserController {
     private final UserService userService;
     private final TokenService tokenService;
 
-    @PostMapping("/login")
-    public ResponseEntity<SignResponseDTO> login(@RequestBody SignRequestDTO request) throws Exception {
-        return new ResponseEntity<>(userService.login(request), HttpStatus.OK);
-    }
-
     @GetMapping("")
     public ResponseEntity<SignResponseDTO> getUser(@RequestParam String email) throws Exception {
         return new ResponseEntity<>(userService.getUser(email), HttpStatus.OK);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<SignResponseDTO> login(@RequestBody SignRequestDTO request) throws Exception {
+        return new ResponseEntity<>(userService.login(request), HttpStatus.OK);
     }
 
     @PostMapping("/logout")

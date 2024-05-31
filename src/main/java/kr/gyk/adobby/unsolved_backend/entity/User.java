@@ -28,7 +28,11 @@ public class User {
 
     @JoinColumn(name = "baekjoon")
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Baekjoon baekjoon;
+    private BaekjoonID baekjoonID;
+
+    @JoinColumn(name = "user_extend")
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private UserExtend userExtend;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @Builder.Default
@@ -36,9 +40,15 @@ public class User {
 
     private String refreshToken;
 
-    public void setBaekjoon(Baekjoon baekjoon) {
-        this.baekjoon = baekjoon;
-        baekjoon.setUser(this);
+    public void setUserExtend(UserExtend userExtend) {
+        this.userExtend = userExtend;
+        userExtend.setId(this.getId());
+        userExtend.setUser(this);
+    }
+
+    public void setBaekjoonID(BaekjoonID baekjoonID) {
+        this.baekjoonID = baekjoonID;
+        baekjoonID.setUser(this);
     }
 
     public void setRoles(List<Authority> role) {
