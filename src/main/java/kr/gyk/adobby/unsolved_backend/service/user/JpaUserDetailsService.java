@@ -1,8 +1,8 @@
-package kr.gyk.adobby.unsolved_backend.service;
+package kr.gyk.adobby.unsolved_backend.service.user;
 
-import kr.gyk.adobby.unsolved_backend.entity.User;
+import kr.gyk.adobby.unsolved_backend.entity.user.User;
 import kr.gyk.adobby.unsolved_backend.jwt.UserDetailsCustom;
-import kr.gyk.adobby.unsolved_backend.repository.UserRepository;
+import kr.gyk.adobby.unsolved_backend.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

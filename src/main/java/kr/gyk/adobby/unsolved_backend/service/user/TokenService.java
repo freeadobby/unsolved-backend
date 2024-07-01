@@ -1,13 +1,13 @@
-package kr.gyk.adobby.unsolved_backend.service;
+package kr.gyk.adobby.unsolved_backend.service.user;
 
-import kr.gyk.adobby.unsolved_backend.dto.TokenDTO;
-import kr.gyk.adobby.unsolved_backend.entity.AccessTokenBlackList;
-import kr.gyk.adobby.unsolved_backend.entity.RefreshToken;
-import kr.gyk.adobby.unsolved_backend.entity.User;
+import kr.gyk.adobby.unsolved_backend.dto.user.TokenDTO;
+import kr.gyk.adobby.unsolved_backend.entity.user.AccessTokenBlackList;
+import kr.gyk.adobby.unsolved_backend.entity.user.RefreshToken;
+import kr.gyk.adobby.unsolved_backend.entity.user.User;
 import kr.gyk.adobby.unsolved_backend.jwt.JwtProvider;
-import kr.gyk.adobby.unsolved_backend.repository.AccessTokenBlackListRepository;
-import kr.gyk.adobby.unsolved_backend.repository.RefreshTokenRepository;
-import kr.gyk.adobby.unsolved_backend.repository.UserRepository;
+import kr.gyk.adobby.unsolved_backend.repository.user.AccessTokenBlackListRepository;
+import kr.gyk.adobby.unsolved_backend.repository.user.RefreshTokenRepository;
+import kr.gyk.adobby.unsolved_backend.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;

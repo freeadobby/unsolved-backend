@@ -1,7 +1,7 @@
-package kr.gyk.adobby.unsolved_backend.repository;
+package kr.gyk.adobby.unsolved_backend.repository.user;
 
-import kr.gyk.adobby.unsolved_backend.entity.BaekjoonID;
-import kr.gyk.adobby.unsolved_backend.entity.User;
+import kr.gyk.adobby.unsolved_backend.entity.user.BaekjoonID;
+import kr.gyk.adobby.unsolved_backend.entity.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

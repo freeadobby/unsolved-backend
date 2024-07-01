@@ -1,6 +1,6 @@
-package kr.gyk.adobby.unsolved_backend.repository;
+package kr.gyk.adobby.unsolved_backend.repository.user;
 
-import kr.gyk.adobby.unsolved_backend.entity.User;
+import kr.gyk.adobby.unsolved_backend.entity.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 

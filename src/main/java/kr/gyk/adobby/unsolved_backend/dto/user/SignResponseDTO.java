@@ -1,7 +1,7 @@
-package kr.gyk.adobby.unsolved_backend.dto;
+package kr.gyk.adobby.unsolved_backend.dto.user;
 
-import kr.gyk.adobby.unsolved_backend.entity.User;
-import kr.gyk.adobby.unsolved_backend.entity.Authority;
+import kr.gyk.adobby.unsolved_backend.entity.user.User;
+import kr.gyk.adobby.unsolved_backend.entity.user.Authority;
 import lombok.*;
 
 import java.util.ArrayList;

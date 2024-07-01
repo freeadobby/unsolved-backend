@@ -1,5 +1,6 @@
-package kr.gyk.adobby.unsolved_backend.entity;
+package kr.gyk.adobby.unsolved_backend.entity.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,15 +10,16 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class BaekjoonID {
+public class Authority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Long id;
 
-    @Column(unique = true, nullable = false)
-    private String username;
+    private String name;
 
     @JoinColumn(name = "user")
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private User user;
 }

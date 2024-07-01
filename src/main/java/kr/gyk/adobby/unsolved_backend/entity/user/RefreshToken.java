@@ -1,4 +1,4 @@
-package kr.gyk.adobby.unsolved_backend.entity;
+package kr.gyk.adobby.unsolved_backend.entity.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Id;

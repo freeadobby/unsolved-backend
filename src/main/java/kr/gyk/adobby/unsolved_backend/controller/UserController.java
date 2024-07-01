@@ -1,12 +1,11 @@
 package kr.gyk.adobby.unsolved_backend.controller;
 
-import kr.gyk.adobby.unsolved_backend.dto.LogoutRequestDTO;
-import kr.gyk.adobby.unsolved_backend.dto.SignRequestDTO;
-import kr.gyk.adobby.unsolved_backend.dto.SignResponseDTO;
-import kr.gyk.adobby.unsolved_backend.dto.TokenDTO;
-import kr.gyk.adobby.unsolved_backend.repository.UserRepository;
-import kr.gyk.adobby.unsolved_backend.service.UserService;
-import kr.gyk.adobby.unsolved_backend.service.TokenService;
+import kr.gyk.adobby.unsolved_backend.dto.user.LogoutRequestDTO;
+import kr.gyk.adobby.unsolved_backend.dto.user.SignRequestDTO;
+import kr.gyk.adobby.unsolved_backend.dto.user.SignResponseDTO;
+import kr.gyk.adobby.unsolved_backend.dto.user.TokenDTO;
+import kr.gyk.adobby.unsolved_backend.service.user.UserService;
+import kr.gyk.adobby.unsolved_backend.service.user.TokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

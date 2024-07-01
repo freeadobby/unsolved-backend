@@ -1,4 +1,4 @@
-package kr.gyk.adobby.unsolved_backend.entity;
+package kr.gyk.adobby.unsolved_backend.entity.problem;
 
 import jakarta.persistence.*;
 import lombok.*;

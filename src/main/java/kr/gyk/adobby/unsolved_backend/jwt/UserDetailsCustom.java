@@ -1,6 +1,6 @@
 package kr.gyk.adobby.unsolved_backend.jwt;
 
-import kr.gyk.adobby.unsolved_backend.entity.User;
+import kr.gyk.adobby.unsolved_backend.entity.user.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

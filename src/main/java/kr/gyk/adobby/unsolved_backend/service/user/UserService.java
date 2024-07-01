@@ -1,12 +1,15 @@
-package kr.gyk.adobby.unsolved_backend.service;
+package kr.gyk.adobby.unsolved_backend.service.user;
 
-import kr.gyk.adobby.unsolved_backend.dto.LogoutRequestDTO;
-import kr.gyk.adobby.unsolved_backend.dto.SignRequestDTO;
-import kr.gyk.adobby.unsolved_backend.dto.SignResponseDTO;
-import kr.gyk.adobby.unsolved_backend.dto.TokenDTO;
-import kr.gyk.adobby.unsolved_backend.entity.*;
+import kr.gyk.adobby.unsolved_backend.dto.user.LogoutRequestDTO;
+import kr.gyk.adobby.unsolved_backend.dto.user.SignRequestDTO;
+import kr.gyk.adobby.unsolved_backend.dto.user.SignResponseDTO;
+import kr.gyk.adobby.unsolved_backend.dto.user.TokenDTO;
+import kr.gyk.adobby.unsolved_backend.entity.user.Authority;
+import kr.gyk.adobby.unsolved_backend.entity.user.BaekjoonID;
+import kr.gyk.adobby.unsolved_backend.entity.user.User;
+import kr.gyk.adobby.unsolved_backend.entity.user.UserExtend;
 import kr.gyk.adobby.unsolved_backend.jwt.JwtProvider;
-import kr.gyk.adobby.unsolved_backend.repository.*;
+import kr.gyk.adobby.unsolved_backend.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;

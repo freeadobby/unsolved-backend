@@ -1,6 +1,7 @@
-package kr.gyk.adobby.unsolved_backend.entity;
+package kr.gyk.adobby.unsolved_backend.entity.user;
 
 import jakarta.persistence.*;
+import kr.gyk.adobby.unsolved_backend.entity.problem.Problem;
 import lombok.*;
 
 import java.time.LocalDateTime;

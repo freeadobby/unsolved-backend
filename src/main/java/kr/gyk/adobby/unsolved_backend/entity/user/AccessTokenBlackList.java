@@ -1,6 +1,5 @@
-package kr.gyk.adobby.unsolved_backend.entity;
+package kr.gyk.adobby.unsolved_backend.entity.user;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Id;
 import lombok.*;
 import org.springframework.data.redis.core.RedisHash;

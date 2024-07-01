@@ -1,8 +1,7 @@
-package kr.gyk.adobby.unsolved_backend.service;
+package kr.gyk.adobby.unsolved_backend.service.problem;
 
-import kr.gyk.adobby.unsolved_backend.dto.ProblemDetailDTO;
-import kr.gyk.adobby.unsolved_backend.repository.ProblemRepository;
-import kr.gyk.adobby.unsolved_backend.repository.ProblemTagRepository;
+import kr.gyk.adobby.unsolved_backend.repository.problem.ProblemRepository;
+import kr.gyk.adobby.unsolved_backend.repository.problem.ProblemTagRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
