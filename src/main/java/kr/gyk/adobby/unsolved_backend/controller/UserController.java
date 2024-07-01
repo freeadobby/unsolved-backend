@@ -16,13 +16,12 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/user")
 public class UserController {
-    private final UserRepository userRepository;
     private final UserService userService;
     private final TokenService tokenService;
 
     @GetMapping("")
     public ResponseEntity<SignResponseDTO> getUser(@RequestParam String email) throws Exception {
-        return new ResponseEntity<>(userService.getUser(email), HttpStatus.OK);
+        return new ResponseEntity<>(userService.getUserResponse(email), HttpStatus.OK);
     }
 
     @PostMapping("/login")

@@ -6,8 +6,7 @@ import kr.gyk.adobby.unsolved_backend.dto.SignResponseDTO;
 import kr.gyk.adobby.unsolved_backend.dto.TokenDTO;
 import kr.gyk.adobby.unsolved_backend.entity.*;
 import kr.gyk.adobby.unsolved_backend.jwt.JwtProvider;
-import kr.gyk.adobby.unsolved_backend.repository.AccessTokenBlackListRepository;
-import kr.gyk.adobby.unsolved_backend.repository.UserRepository;
+import kr.gyk.adobby.unsolved_backend.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,7 +22,6 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtProvider jwtProvider;
-    private final AccessTokenBlackListRepository accessTokenBlackListRepository;
     private final TokenService tokenService;
 
     public SignResponseDTO login(SignRequestDTO request) throws Exception {
@@ -45,11 +43,11 @@ public class UserService {
 
     public boolean logout(LogoutRequestDTO request) throws Exception {
         try {
-            User user = userRepository.findByEmail(request.getEmail()).orElseThrow(() -> new BadCredentialsException("Invalid Email"));
+            User user = this.getUser(request.getEmail());
             tokenService.deleteRefreshToken(user);
             tokenService.addAccessTokenBlackList(user, request.getAccessToken());
         } catch (Exception e) {
-            throw new Exception("Bad Reqeust");
+            throw new Exception("Bad Request");
         }
         return true;
     }
@@ -73,13 +71,23 @@ public class UserService {
         return true;
     }
 
+    /*
     public boolean delete(LogoutRequestDTO request) throws Exception {
         // TODO:: Account Delete Logic
+        try {
+            User user = this.getUser(request.getEmail());
+            userRepository.delete(user);
+
+        }
         return false;
     }
+     */
 
-    public SignResponseDTO getUser(String email) throws Exception {
-        User user = userRepository.findByEmail(email).orElseThrow(() -> new Exception("Cannot find account"));
-        return new SignResponseDTO(user);
+    public SignResponseDTO getUserResponse(String email) throws Exception {
+        return new SignResponseDTO(this.getUser(email));
+    }
+
+    public User getUser(String email) throws Exception {
+        return userRepository.findByEmail(email).orElseThrow(() -> new BadCredentialsException("Invalid Email"));
     }
 }

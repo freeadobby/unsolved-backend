@@ -31,8 +31,4 @@ public class Problem {
     @JoinColumn(name = "problem")
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ProblemTag> roles = new ArrayList<>();
-
-    @JoinColumn(name = "problem_extend")
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private ProblemExtend problemExtend;
 }

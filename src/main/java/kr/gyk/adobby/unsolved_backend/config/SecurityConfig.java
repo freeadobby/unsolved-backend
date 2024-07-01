@@ -40,12 +40,8 @@ public class SecurityConfig {
                 .cors(c -> {
                             CorsConfigurationSource source = request -> {
                                 CorsConfiguration config = new CorsConfiguration();
-                                config.setAllowedOrigins(
-                                        List.of("*")
-                                );
-                                config.setAllowedMethods(
-                                        List.of("*")
-                                );
+                                config.setAllowedOrigins(List.of("*"));
+                                config.setAllowedMethods(List.of("*"));
                                 return config;
                             };
                             c.configurationSource(source);

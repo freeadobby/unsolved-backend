@@ -25,4 +25,7 @@ public class UserExtend {
     private List<UserProblem> acceptedProblem = new ArrayList<>();
 
     // TODO:: Insert User Analysis Data
+
+    
+
 }
