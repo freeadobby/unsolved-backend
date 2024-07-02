@@ -1,4 +1,4 @@
-package kr.gyk.adobby.unsolved_backend.controller;
+package kr.gyk.adobby.unsolved_backend.controller.problem;
 
 import kr.gyk.adobby.unsolved_backend.dto.problem.ProblemDetailDTO;
 import kr.gyk.adobby.unsolved_backend.service.problem.ProblemService;

@@ -1,4 +1,4 @@
-package kr.gyk.adobby.unsolved_backend.controller;
+package kr.gyk.adobby.unsolved_backend.controller.user;
 
 import kr.gyk.adobby.unsolved_backend.dto.user.LogoutRequestDTO;
 import kr.gyk.adobby.unsolved_backend.dto.user.SignRequestDTO;
