@@ -1,6 +1,6 @@
 package kr.gyk.adobby.unsolved_backend.controller.problem;
 
-import kr.gyk.adobby.unsolved_backend.dto.problem.ProblemListDTO;
+import kr.gyk.adobby.unsolved_backend.dto.problem.ProblemsDTO;
 import kr.gyk.adobby.unsolved_backend.service.problem.ProblemService;
 import kr.gyk.adobby.unsolved_backend.service.problem.ProblemsListService;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,9 @@ public class ProblemsController {
     private final ProblemsListService problemsListService;
 
     @GetMapping("")
-    public ResponseEntity<ProblemListDTO> getProblems(@RequestParam Long fromId, @RequestParam Long toId) throws Exception {
+    public ResponseEntity<ProblemsDTO> getProblems(@RequestParam Long fromId, @RequestParam Long toId) throws Exception {
         return new ResponseEntity<>(problemsListService.getProblemList(fromId, toId), HttpStatus.OK);
     }
 }
+
+// TODO: 리스트 단위 기능 추가

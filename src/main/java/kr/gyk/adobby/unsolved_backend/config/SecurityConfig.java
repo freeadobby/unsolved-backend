@@ -61,7 +61,7 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.PATCH, "/problem").hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.POST, "/tag").hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.DELETE, "/tag").hasRole("ADMIN")
-                                .anyRequest().denyAll()
+                                .anyRequest().permitAll()
                 )
                 .addFilterBefore(new JwtAuthenticationFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling(

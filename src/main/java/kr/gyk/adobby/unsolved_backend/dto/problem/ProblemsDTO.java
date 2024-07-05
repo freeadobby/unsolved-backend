@@ -4,12 +4,13 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@Setter
 @Getter
+@Setter
 @Builder
-public class ProblemListDTO {
+public class ProblemsDTO {
     private Long count;
-    private List<ProblemDetailDTO> problemList;
+    private List<ProblemsElementDTO> problemList = new ArrayList<>();
 }

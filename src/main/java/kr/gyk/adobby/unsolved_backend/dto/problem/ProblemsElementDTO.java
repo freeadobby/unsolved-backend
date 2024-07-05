@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-public class ProblemListElementDTO {
+public class ProblemsElementDTO {
     private Long id;
     private String title;
     private Integer level;

@@ -9,7 +9,6 @@ import java.util.List;
 @Setter
 @Getter
 @Builder
-public class ProblemListDTO {
-    private Long count;
-    private List<ProblemDetailDTO> problemList;
+public class ProblemRequestListDTO {
+    private List<Long> problemIds;
 }

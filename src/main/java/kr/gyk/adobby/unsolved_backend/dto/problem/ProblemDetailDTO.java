@@ -1,11 +1,9 @@
 package kr.gyk.adobby.unsolved_backend.dto.problem;
 
-import kr.gyk.adobby.unsolved_backend.entity.problem.ProblemTag;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -18,7 +16,7 @@ public class ProblemDetailDTO {
     private Boolean isSprout;
     private Integer levelCustom;
     private Integer levelSolvedAC;
-    private List<ProblemTagDTO> tags = new ArrayList<>();
+    private List<ProblemTagDTO> tags;
 
     // TODO :: Add more Information of Problem
 }
