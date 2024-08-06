@@ -41,4 +41,5 @@ public class ProblemController {
     public ResponseEntity<Boolean> updateProblem(@RequestBody ProblemPatchDTO problemPatchDTODTO) throws Exception {
         return new ResponseEntity<>(problemService.updateProblem(problemPatchDTODTO), HttpStatus.OK);
     }
+
 }

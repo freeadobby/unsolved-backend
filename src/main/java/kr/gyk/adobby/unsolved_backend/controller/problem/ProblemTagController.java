@@ -1,7 +1,7 @@
 package kr.gyk.adobby.unsolved_backend.controller.problem;
 
-import kr.gyk.adobby.unsolved_backend.dto.problem.ProblemTagDTO;
-import kr.gyk.adobby.unsolved_backend.service.problem.ProblemTagService;
+import kr.gyk.adobby.unsolved_backend.dto.problemTag.ProblemTagDTO;
+import kr.gyk.adobby.unsolved_backend.service.problemTag.ProblemTagService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,4 +27,6 @@ public class ProblemTagController {
     public ResponseEntity<Boolean> deleteProblemTag(@RequestParam Integer id) throws Exception {
         return new ResponseEntity<>(problemTagService.deleteProblemTag(id), HttpStatus.OK);
     }
+
+    // TODO: Add PATCH
 }

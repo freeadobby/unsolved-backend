@@ -1,6 +1,6 @@
-package kr.gyk.adobby.unsolved_backend.service.problem;
+package kr.gyk.adobby.unsolved_backend.service.problemTag;
 
-import kr.gyk.adobby.unsolved_backend.dto.problem.ProblemTagDTO;
+import kr.gyk.adobby.unsolved_backend.dto.problemTag.ProblemTagDTO;
 import kr.gyk.adobby.unsolved_backend.entity.problem.ProblemTag;
 import kr.gyk.adobby.unsolved_backend.exception.DataNotFoundException;
 import kr.gyk.adobby.unsolved_backend.repository.problem.ProblemTagRepository;

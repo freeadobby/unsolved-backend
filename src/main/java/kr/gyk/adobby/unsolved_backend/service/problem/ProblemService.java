@@ -1,6 +1,7 @@
 package kr.gyk.adobby.unsolved_backend.service.problem;
 
 import kr.gyk.adobby.unsolved_backend.dto.problem.*;
+import kr.gyk.adobby.unsolved_backend.dto.problemTag.ProblemTagDTO;
 import kr.gyk.adobby.unsolved_backend.entity.problem.Problem;
 import kr.gyk.adobby.unsolved_backend.entity.problem.ProblemTag;
 import kr.gyk.adobby.unsolved_backend.exception.DataNotFoundException;
@@ -63,7 +64,7 @@ public class ProblemService {
     private ProblemDetailDTO getProblemDetailDTO(Long id) {
         Problem problem = problemRepository.findById(id).orElse(null);
         if (problem == null) return null;
-        List<ProblemTagDTO> problemTagDTOList = new ArrayList<>();
+        ArrayList<ProblemTagDTO> problemTagDTOList = new ArrayList<>();
         for (var tag : problem.getTag()) problemTagDTOList.add(new ProblemTagDTO(tag));
         return ProblemDetailDTO.builder()
                 .id(id)
@@ -80,6 +81,7 @@ public class ProblemService {
     public boolean createProblem(ProblemDetailDTO request) throws Exception {
         try {
             Problem problem = Problem.builder()
+                    .id(request.getId())
                     .title(request.getTitle())
                     .acceptedUserCount(request.getAcceptedUserCount())
                     .isSprout(request.getIsSprout())

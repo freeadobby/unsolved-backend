@@ -1,5 +1,6 @@
 package kr.gyk.adobby.unsolved_backend.dto.problem;
 
+import kr.gyk.adobby.unsolved_backend.dto.problemTag.ProblemTagDTO;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

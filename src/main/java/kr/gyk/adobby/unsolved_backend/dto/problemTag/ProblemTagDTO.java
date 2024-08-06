@@ -1,4 +1,4 @@
-package kr.gyk.adobby.unsolved_backend.dto.problem;
+package kr.gyk.adobby.unsolved_backend.dto.problemTag;
 
 import kr.gyk.adobby.unsolved_backend.entity.problem.ProblemTag;
 import lombok.*;
