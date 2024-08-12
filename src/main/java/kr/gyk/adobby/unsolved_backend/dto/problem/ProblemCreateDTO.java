@@ -5,17 +5,18 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
 @Builder
-public class ProblemDetailDTO {
+public class ProblemCreateDTO {
     private Long id;
     private String title;
     private Long acceptedUserCount;
     private Boolean isSprout;
     private Integer levelCustom;
     private Integer levelSolvedAC;
-    private List<ProblemTagDTO> tags;
+    private List<Integer> tags;
 }

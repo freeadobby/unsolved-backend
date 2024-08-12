@@ -7,7 +7,6 @@ import kr.gyk.adobby.unsolved_backend.dto.user.TokenDTO;
 import kr.gyk.adobby.unsolved_backend.entity.user.Authority;
 import kr.gyk.adobby.unsolved_backend.entity.user.BaekjoonID;
 import kr.gyk.adobby.unsolved_backend.entity.user.User;
-import kr.gyk.adobby.unsolved_backend.entity.user.UserExtend;
 import kr.gyk.adobby.unsolved_backend.jwt.JwtProvider;
 import kr.gyk.adobby.unsolved_backend.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -63,7 +62,7 @@ public class UserService {
                     .username(request.getUsername())
                     .password(passwordEncoder.encode(request.getPassword()))
                     .build();
-            user.setUserExtend(UserExtend.builder().id(user.getId()).build());
+            //user.setUserExtend(UserExtend.builder().id(user.getId()).build());
             user.setBaekjoonID(BaekjoonID.builder().username(request.getBaekjoon()).build());
             user.setRoles(Collections.singletonList(Authority.builder().name("ROLE_USER").build()));
             userRepository.save(user);

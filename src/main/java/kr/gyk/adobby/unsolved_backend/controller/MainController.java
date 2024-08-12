@@ -16,7 +16,7 @@ public class MainController {
         IndexResponseDTO response = IndexResponseDTO.builder()
                 .heading("Soongsil University School of Software Software Contest Exhibiton")
                 .team("Adobby")
-                .project("Redis")
+                .project("unSolved")
                 .version("v0.1")
                 .build();
         return new ResponseEntity<>(response, HttpStatus.OK);

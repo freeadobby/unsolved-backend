@@ -1,4 +1,4 @@
-package kr.gyk.adobby.unsolved_backend.controller;
+package kr.gyk.adobby.unsolved_backend.controller.user;
 
 import kr.gyk.adobby.unsolved_backend.dto.user.LogoutRequestDTO;
 import kr.gyk.adobby.unsolved_backend.dto.user.SignRequestDTO;
@@ -20,6 +20,7 @@ public class UserController {
 
     @GetMapping("")
     public ResponseEntity<SignResponseDTO> getUser(@RequestParam String email) throws Exception {
+        System.out.println(email);
         return new ResponseEntity<>(userService.getUserResponse(email), HttpStatus.OK);
     }
 
