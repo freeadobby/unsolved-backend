@@ -11,3 +11,5 @@ public class UnsolvedBackendApplication {
     }
 
 }
+
+// TODO :: openAI API 요청 기능 추가
