@@ -78,7 +78,7 @@ public class ProblemService {
                 .build();
     }
 
-    public boolean createProblem(ProblemDetailDTO request) throws Exception {
+    public boolean createProblem(ProblemCreateDTO request) throws Exception {
         try {
             Problem problem = Problem.builder()
                     .id(request.getId())
@@ -89,7 +89,12 @@ public class ProblemService {
                     .levelSolvedAC(request.getLevelSolvedAC())
                     .build();
             List<ProblemTag> problemTags = new ArrayList<>();
-            for (var tag : request.getTags()) problemTags.add(problemTagRepository.findById(tag.getId()).orElseThrow(() -> new DataNotFoundException("Cannot find Data using ID")));
+            System.out.println(request.getTags());
+            for (var tag : request.getTags()) {
+                ProblemTag problemTag = problemTagRepository.findById(tag).orElseThrow(() -> new DataNotFoundException("Cannot find Data using ID"));
+                problemTag.getProblem().add(problem);
+                problemTags.add(problemTag);
+            }
             problem.setTag(problemTags);
             problemRepository.save(problem);
         } catch (Exception e) {

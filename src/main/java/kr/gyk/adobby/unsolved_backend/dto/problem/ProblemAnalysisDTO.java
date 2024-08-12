@@ -12,8 +12,9 @@ public class ProblemAnalysisDTO {
     private ProblemDetailDTO problem;
     private SignRequestDTO user;
 
+    private Integer scoreAnalysis;
     private Integer scoreProblem;
-    private Integer userScore;
+    private Integer scoreUser;
 
     private String opinion;
     private Integer totalScore;

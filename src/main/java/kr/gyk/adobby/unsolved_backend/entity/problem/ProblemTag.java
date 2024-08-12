@@ -14,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ProblemTag {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false, unique = true)
@@ -25,7 +26,6 @@ public class ProblemTag {
     @Column(nullable = true, length = 255)
     private String name;
 
-    @JoinColumn(name = "tag")
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany
     private List<Problem> problem = new ArrayList<>();
 }

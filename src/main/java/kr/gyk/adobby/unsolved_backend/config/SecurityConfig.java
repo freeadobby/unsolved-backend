@@ -51,16 +51,17 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize ->
                         authorize
                                 .requestMatchers(HttpMethod.GET, "/").permitAll()
+                                /*
                                 .requestMatchers(HttpMethod.POST, "/user/register").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/user/login").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/user/logout").hasRole("USER")
-                                .requestMatchers(HttpMethod.GET, "/user").hasRole("USER")
+                                .requestMatchers(HttpMethod.GET, "/user").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/user/token").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/problem").hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.DELETE, "/problem").hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.PATCH, "/problem").hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.POST, "/tag").hasRole("ADMIN")
-                                .requestMatchers(HttpMethod.DELETE, "/tag").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.DELETE, "/tag").hasRole("ADMIN")*/
                                 .anyRequest().permitAll()
                 )
                 .addFilterBefore(new JwtAuthenticationFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class)

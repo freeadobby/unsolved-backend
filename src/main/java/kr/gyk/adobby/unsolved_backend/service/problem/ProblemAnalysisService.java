@@ -48,12 +48,12 @@ public class ProblemAnalysisService {
                         .levelSolvedAC(problem.getLevelSolvedAC())
                         .tags(problemTags)
                         .build())
-                .scoreProblem(problem.getLevelCustom())
-                .userScore(userAnalysisDTO.getRatingTier().intValue())
+                .scoreProblem(problem.getLevelCustom() * 100)
+                .scoreUser(userAnalysisDTO.getRatingScore())
+                .scoreAnalysis(problem.getLevelCustom() * 100 + 20)
                 .build();
-        problemAnalysisDTO.setTotalScore((problem.getLevelCustom() - userAnalysisDTO.getRatingTier().intValue()) / 100 * 35); // (ProblemScore - UserScore) / 100 * 35
-
-        // TODO :: Opinion
+        problemAnalysisDTO.setTotalScore((int) ((problemAnalysisDTO.getScoreAnalysis() - userAnalysisDTO.getRatingScore()) / 3.5)); // (ProblemScore - UserScore) / 3500 * 100
+        problemAnalysisDTO.setOpinion("Lorem Ipsum");
 
         return problemAnalysisDTO;
     }

@@ -32,8 +32,7 @@ public class Problem {
     @Column(nullable = false)
     private Integer levelSolvedAC;
 
-    @JoinColumn(name = "problem")
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "problem", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ProblemTag> tag = new ArrayList<>();
 
     @OneToMany(mappedBy = "problem", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)

@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ProblemRepository extends JpaRepository<Problem, Long> {
     List<Problem> findAllByOrderByIdAsc();
+    List<Problem> findAllByLevelCustom(Integer levelCustom);
 }

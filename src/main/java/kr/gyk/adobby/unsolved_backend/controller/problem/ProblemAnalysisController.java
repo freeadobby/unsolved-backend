@@ -17,7 +17,7 @@ public class ProblemAnalysisController {
     private final ProblemAnalysisService problemAnalysisService;
 
     @GetMapping("/analysis")
-    public ResponseEntity<ProblemAnalysisDTO> getProblemAnalysis(@RequestParam Long problemId, @RequestParam String userEmail) throws Exception {
-        return new ResponseEntity<>(problemAnalysisService.getProblemAnalysis(problemId, userEmail), HttpStatus.OK);
+    public ResponseEntity<ProblemAnalysisDTO> getProblemAnalysis(@RequestParam Long problem, @RequestParam String user) throws Exception {
+        return new ResponseEntity<>(problemAnalysisService.getProblemAnalysis(problem, user), HttpStatus.OK);
     }
 }

@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,7 +17,5 @@ public class ProblemDetailDTO {
     private Boolean isSprout;
     private Integer levelCustom;
     private Integer levelSolvedAC;
-    private ArrayList<ProblemTagDTO> tags;
-
-    // TODO :: Add more Information of Problem
+    private List<ProblemTagDTO> tags;
 }

@@ -17,8 +17,8 @@ public class UserAnalysisController {
     private final UserAnalysisService userAnalysisService;
 
     @GetMapping("/analysis")
-    public ResponseEntity<UserAnalysisDTO> getUserAnalysis (@RequestParam String email) throws Exception {
-        return new ResponseEntity<>(userAnalysisService.getUserAnalysis(email), HttpStatus.OK);
+    public ResponseEntity<UserAnalysisDTO> getUserAnalysis (@RequestParam String user) throws Exception {
+        return new ResponseEntity<>(userAnalysisService.getUserAnalysis(user), HttpStatus.OK);
     }
 
 }

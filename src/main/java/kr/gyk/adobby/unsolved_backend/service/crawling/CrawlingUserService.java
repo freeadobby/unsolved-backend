@@ -29,8 +29,13 @@ public class CrawlingUserService {
         contents = JSoupService.getElements(connection, "#statics > tbody > tr");
         for (var element : contents) {
             String key = element.select("tr > th").text();
-            Integer value = Integer.parseInt(element.select("td").text());
-            switch (key) {
+            Integer value = null;
+            System.out.println(key + " " + value);
+            try {
+                value = Integer.parseInt(element.select("td").text());
+            } catch (Exception e) { continue; }
+
+            switch (key) { // TODO
                 case "등수" -> userStats.setSRanking(value);
                 case "맞은 문제" -> userStats.setSProblemSolved(value);
                 case "맞았지만 만점을 받지 못한 문제" -> userStats.setSProblemSolvedNotPerfect(value);

@@ -20,6 +20,7 @@ public class UserController {
 
     @GetMapping("")
     public ResponseEntity<SignResponseDTO> getUser(@RequestParam String email) throws Exception {
+        System.out.println(email);
         return new ResponseEntity<>(userService.getUserResponse(email), HttpStatus.OK);
     }
 

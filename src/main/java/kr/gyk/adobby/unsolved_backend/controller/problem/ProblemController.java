@@ -1,9 +1,7 @@
 package kr.gyk.adobby.unsolved_backend.controller.problem;
 
-import kr.gyk.adobby.unsolved_backend.dto.problem.ProblemDetailDTO;
-import kr.gyk.adobby.unsolved_backend.dto.problem.ProblemListDTO;
-import kr.gyk.adobby.unsolved_backend.dto.problem.ProblemPatchDTO;
-import kr.gyk.adobby.unsolved_backend.dto.problem.ProblemRequestListDTO;
+import kr.gyk.adobby.unsolved_backend.dto.problem.*;
+import kr.gyk.adobby.unsolved_backend.entity.problem.Problem;
 import kr.gyk.adobby.unsolved_backend.exception.RequestParamsNotValidException;
 import kr.gyk.adobby.unsolved_backend.service.problem.ProblemService;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.html.HTML;
 import java.util.Optional;
 
 @RestController
@@ -28,8 +27,8 @@ public class ProblemController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Boolean> createProblem(@RequestBody ProblemDetailDTO problemDetailDTO) throws Exception {
-        return new ResponseEntity<>(problemService.createProblem(problemDetailDTO), HttpStatus.OK);
+    public ResponseEntity<Boolean> createProblem(@RequestBody ProblemCreateDTO problemCreateDTO) throws Exception {
+        return new ResponseEntity<>(problemService.createProblem(problemCreateDTO), HttpStatus.OK);
     }
 
     @DeleteMapping("")
